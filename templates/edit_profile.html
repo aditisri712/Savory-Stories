@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Profile - Savory Stories</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="auth-body">
+    <div class="auth-wrapper">
+        <div class="auth-rectangle">
+            <h2>Edit Profile</h2>
+            <form method="POST">
+                <label>Update Username:</label>
+                <input type="text" name="username" value="{{ username }}" required>
+                <button type="submit">Save Changes</button>
+            </form>
+            <p><a href="/profile" style="color: #ff6347; text-decoration: none;">Cancel</a></p>
+        </div>
+    </div>
+</body>
+</html>

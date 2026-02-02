@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Recipe - Savory Stories</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body style="background-color: #f4f4f4; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+
+    <div class="edit-container" style="max-width: 600px; margin: 50px auto; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+        <h2 style="color: #ff6347; text-align: center; margin-bottom: 25px;">✏️ Edit Recipe</h2>
+        
+        <form method="POST" enctype="multipart/form-data">
+            
+            <label style="font-weight: bold; color: #555;">Recipe Title:</label>
+            <input type="text" name="title" value="{{ recipe.title }}" required 
+                   style="width: 100%; padding: 12px; margin: 10px 0 20px 0; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box;">
+
+            <label style="font-weight: bold; color: #555;">Short Description:</label>
+            <textarea name="description" required 
+                      style="width: 100%; height: 80px; padding: 12px; margin: 10px 0 20px 0; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; font-family: inherit;">{{ recipe.description }}</textarea>
+            
+            <div style="margin: 15px 0; padding: 15px; background: #fafafa; border-radius: 8px; border: 1px dashed #ddd;">
+                <label style="font-weight: bold; color: #555;">Current Image:</label><br>
+                {% if recipe.image %}
+                    <img src="{{ url_for('static', filename='uploads/' + recipe.image) }}" 
+                         style="width: 120px; height: 120px; object-fit: cover; border-radius: 8px; margin-top: 10px; border: 2px solid #ff6347;">
+                {% else %}
+                    <p style="color: #888; font-style: italic; margin-top: 10px;">No image uploaded yet.</p>
+                {% endif %}
+                <br><br>
+                <label style="font-weight: bold; color: #555;">Change Photo (Optional):</label><br>
+                <input type="file" name="image" style="margin-top: 10px;">
+            </div>
+
+            <label style="font-weight: bold; color: #555;">Ingredients:</label>
+            <textarea name="ingredients" required 
+                      style="width: 100%; height: 120px; padding: 12px; margin: 10px 0 20px 0; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; font-family: inherit;">{{ recipe.ingredients }}</textarea>
+            
+            <label style="font-weight: bold; color: #555;">Method / Steps:</label>
+            <textarea name="method" required 
+                      style="width: 100%; height: 150px; padding: 12px; margin: 10px 0 20px 0; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; font-family: inherit;">{{ recipe.method }}</textarea>
+
+            <div style="display: flex; gap: 10px; margin-top: 10px;">
+                <button type="submit" 
+                        style="flex: 2; background: #ff6347; color: white; padding: 12px; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 1rem;">
+                    Update Recipe
+                </button>
+                <a href="/profile" 
+                   style="flex: 1; text-align: center; background: #eee; color: #333; padding: 12px; border-radius: 8px; text-decoration: none; font-weight: bold; display: flex; align-items: center; justify-content: center;">
+                    Cancel
+                </a>
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>

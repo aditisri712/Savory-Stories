@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home - Savory Stories</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">Savory Stories</div>
+        <div class="nav-links">
+            <span class="welcome-text">Welcome, {{ username }}!</span>
+            <a href="/profile" class="profile-link">👤 My Profile</a>
+            <a href="/aboutus">About Us</a>
+            <a href="/logout" class="logout-link">Logout</a>
+        </div>
+    </nav>
+
+    <header class="hero-banner">
+        <p class="tagline">Discover . Cook . Share</p>
+        <a href="/create" class="share-btn"><span>+</span> Share Your Idea</a>
+    </header>
+
+    <main class="main-content">
+        <h2 class="section-title">Latest Recipes</h2>
+     
+<div class="search-container" style="text-align: center; margin: 20px 0;">
+    <form action="/home" method="GET" style="display: inline-block; width: 80%; max-width: 500px;">
+        <input type="text" name="search" placeholder="Search for recipes (e.g. Chicken, Cake...)" 
+               style="width: 70%; padding: 10px; border-radius: 20px; border: 1px solid #ddd; outline: none;">
+        <button type="submit" style="padding: 10px 20px; border-radius: 20px; border: none; background: #ff6347; color: white; cursor: pointer; font-weight: bold;">
+            Search
+        </button>
+    </form>
+</div>
+                 
+
+<div class="recipe-grid">
+    {% for recipe in recipes %}
+    <a href="{{ url_for('recipe_detail', recipe_id=recipe['id']) }}" style="text-decoration: none; color: inherit;">
+        <div class="recipe-card" style="margin-bottom: 20px; background: white; border-radius: 15px; padding: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+            
+            <div class="recipe-image-container" style="width: 100%; height: 200px; overflow: hidden; border-radius: 10px;">
+                {% if recipe.image %}
+                    <img src="{{ url_for('static', filename='uploads/' + recipe.image) }}" 
+                         style="width: 100%; height: 100%; object-fit: cover;">
+                {% else %}
+                    <div style="width: 100%; height: 100%; background: #eee; display: flex; align-items: center; justify-content: center; color: #aaa;">No Image</div>
+                {% endif %}
+            </div>
+
+            <div class="card-content" style="padding: 10px 5px;">
+                <div style="display: flex; align-items: center; margin-top: 5px;">
+                    <span style="font-size: 0.75rem; background: #fff0ed; color: #ff6347; padding: 2px 8px; border-radius: 20px; font-weight: 600;">
+                        @{{recipe.author}}
+                    </span>
+                </div>
+
+                <h3 style="color: #333; margin: 8px 0 5px 0;">{{ recipe.title }}</h3>
+                <p style="color: #666; font-size: 0.9rem; margin-bottom: 10px;">{{ recipe.description[:100] }}...
+                </p>
+                
+                <span style="display: block; color: #ff6347; font-weight: bold; font-size: 0.85rem;">
+                    View Full Recipe →
+                </span>
+            </div>
+
+        </div> </a> {% endfor %}
+</div> ```
+</body>
+</html>

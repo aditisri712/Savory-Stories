@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Profile - Savory Stories</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">Savory Stories</div>
+        <a href="/home" style="text-decoration:none; color:#ff6347; font-weight:bold;">← Back to Feed</a>
+    </nav>
+
+    <div class="container">
+        <header class="profile-header" style="text-align: center; margin: 40px 0;">
+            <div class="profile-avatar" style="font-size: 5rem;">👤</div>
+            <h1>{{ username }}
+                <a href="/edit_profile" style="font-size: 1rem; text-decoration: none; color: #ff6347;">(Edit✏️)</a>
+            </h1>
+            <p>You have shared {{ recipes|length }} recipes</p>
+        </header>
+
+        <h2 class="section-title">My Creations</h2>
+        <div class="recipe-grid">
+            {% for recipe in recipes %}
+            <div class="recipe-card">
+                {% if recipe.image %}
+                    <img src="{{ url_for('static', filename='uploads/' + recipe.image) }}" 
+                         style="width:100%; height:200px; object-fit:cover; border-radius:10px; margin-bottom:10px;">
+                {% endif %}
+                
+                <h3>{{ recipe.title }}</h3>
+                <p>{{ recipe.description }}</p>
+
+                <div style="margin-top: 15px; display: flex; justify-content: flex-end; gap: 8px;">
+                    <a href="{{ url_for('edit_recipe', recipe_id=recipe['id']) }}" 
+                       style="background: #4caf50; color: white; padding: 6px 12px; border-radius: 5px; text-decoration: none; font-size: 0.8rem; display: inline-block;">
+                       ✏️ Edit
+                    </a>
+
+                    <a href="{{ url_for('delete_recipe', recipe_id=recipe['id']) }}" 
+                       style="background: #ff6347; color: white; padding: 6px 12px; border-radius: 5px; text-decoration: none; font-size: 0.8rem; display: inline-block;"
+                       onclick="return confirm('Delete karein?')">
+                       🗑️ Delete
+                    </a>
+                </div> 
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

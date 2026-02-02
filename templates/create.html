@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Share Recipe - Savory Stories</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body class="auth-body"> <div class="auth-wrapper" style="max-width: 600px;">
+        <div class="auth-rectangle" style="width: 100%;">
+            <h2 class="logo" style="font-size: 2.5rem; margin-bottom: 10px;">Savory Stories</h2>
+            <h3 style="text-align: center; margin-bottom: 20px; color: #555;">Share Your Masterpiece</h3>
+
+            <form method="POST" action="/create" enctype="multipart/form-data">
+                
+                <input type="text" name="title" placeholder="Recipe Title (e.g., Butter Chicken)" required>
+                
+                <textarea name="description" placeholder="Short and catchy description..." style="height: 80px;" required></textarea>
+
+                <div class="file-upload" style="border: 1px dashed #ff6347; padding: 15px; border-radius: 8px; margin-bottom: 15px; background: #fffaf0;">
+                    <label style="display: block; font-weight: bold; margin-bottom: 5px; color: #ff6347;">📸 Add Recipe Photo:</label>
+                    <input type="file" name="recipe_image" accept="image/*" required>
+                </div>
+
+                <textarea name="ingredients" placeholder="Ingredients List (One per line)" style="height: 100px;" required></textarea>
+                
+                <textarea name="method" placeholder="Cooking Steps / Method..." style="height: 150px;" required></textarea>
+
+                <button type="submit">Post Recipe</button>
+            </form>
+
+            <p style="text-align: center; margin-top: 20px;">
+                <a href="/home" style="color: #ff6347; text-decoration: none; font-weight: bold;">← Back to Home</a>
+            </p>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Savory Stories - Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="auth-wrapper">
+        <h1 class="logo">Savory Stories</h1>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, message in messages %}
+              <div class="flash {{ category }}">{{ message }}</div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+
+        <div class="auth-rectangles">
+            <div class="auth-rectangle">
+                <form method="POST" action="/login">
+                    <h2>Login</h2>
+                    <input type="email" name="email" placeholder="Email" required>
+                    <input type="password" name="password" placeholder="Password" required>
+                    <button type="submit">Login</button>
+
+                    <p class="forgot"><a href="/forgot">Forgot Password?</a></p>
+                </form>
+            </div>
+
+            <div class="auth-rectangle">
+                <form method="POST" action="/signup">
+                    <h2>Sign Up</h2>
+                    <input type="text" name="username" placeholder="Username" required>
+                    <input type="email" name="email" placeholder="Email" required>
+                    <input type="password" name="password" placeholder="Password" required>
+                    <button type="submit">Sign Up</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
