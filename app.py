@@ -99,7 +99,7 @@ def home():
             "title": row[1],
             "description": row[2],
             "image": row[3],
-            "author": row[4] # Username yahan se aayega
+            "author": row[4] 
         })
     conn.close()
 
