@@ -21,7 +21,7 @@ body {
 
 .logo {
     font-family: 'Pacifico', cursive;
-    color: #ff6347; /* Tomato Red */
+    color: #ff6347; 
     font-size: 3.5rem;
     margin: 40px 0;
     text-align: center;
@@ -153,11 +153,11 @@ button:hover { background-color: #e5533d; }
     text-align: center;
 }
 
-/* File Upload Container */
+
 .file-upload {
     background: #fafafa;
     padding: 15px;
-    border: 1px dashed #ff6347; /* Dashed border for a "drop" look */
+    border: 1px dashed #ff6347; 
     border-radius: 8px;
     margin-bottom: 15px;
     text-align: left;
